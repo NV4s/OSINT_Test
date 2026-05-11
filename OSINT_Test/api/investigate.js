@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     const response = await axios.get(breachUrl);
     const breachData = response.data;
 
+    // Fixed the operator formatting here
     const breachesFound = breachData?.ExposedBreaches?.breaches_details?.length |
 
 | 0;

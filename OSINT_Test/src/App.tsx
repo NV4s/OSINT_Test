@@ -29,6 +29,14 @@ export default function App() {
       const generatedNodes: Node =;
       const generatedEdges: Edge =;
       
+      // Central Target Node
+      generatedNodes.push({
+        id: 'target-root',
+        position: { x: 400, y: 50 },
+        data: { label: data.target },
+        style: { background: '#0f172a', color: 'white', border: '1px solid #3b82f6', borderRadius: '8px', padding: '10px' }
+      });
+
       if (data.breaches && data.breaches.length > 0) {
         data.breaches.forEach((breach: BreachData, index: number) => {
           const nodeId = `breach-${index}`;
@@ -38,7 +46,7 @@ export default function App() {
             id: nodeId,
             position: { x: (index % 3) * 250 + 100, y: Math.floor(index / 3) * 150 + 200 },
             data: { label: `${breach.breach}\n(${breach.domain})` },
-            style: { background: '#ef4444', color: 'white', borderRadius: '8px' }
+            style: { background: '#ef4444', color: 'white', borderRadius: '8px', padding: '10px' }
           });
           
           // Connect the nodes back to the central target
@@ -51,11 +59,12 @@ export default function App() {
           });
         });
       } else {
+         // No breaches found node
          generatedNodes.push({
             id: 'no-breach',
             position: { x: 400, y: 200 },
             data: { label: 'No breaches found.' },
-            style: { background: '#22c55e', color: 'white', borderRadius: '8px' }
+            style: { background: '#22c55e', color: 'white', borderRadius: '8px', padding: '10px' }
          });
          generatedEdges.push({ 
             id: 'edge-root-no-breach', 
@@ -77,7 +86,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ padding: '40px', fontFamily: 'system-ui, sans-serif', maxWidth: '1000px', margin: '0 auto', color: 'white' }}>
       <h1 style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '32px' }}>
         <ShieldAlert size={36} color="#ef4444" />
         Vercel OSINT Platform
